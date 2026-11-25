@@ -18,10 +18,11 @@ This project compares four attribution models (first-click, last-click, linear, 
 
 - **Source:** AjNavneet/MultiTouch-Attribution-Marketing-Spend-Optimization (GitHub), file `attribution_data.csv`.
 - **Size:** 586,737 rows, 6 columns. Each row is one interaction, not one customer journey.
-- **Customer journeys (unique users):** TBD
-- **Channels:** TBD
-- **Ad spend:** TBD. If the file has no spend column, the 50,000 EUR budget is a simulated scenario and is labeled as such everywhere.
-- **Licence of the source data:** TBD
+- **Unique users (cookies):** 240,108
+- **Channels (5):** Facebook, Paid Search, Online Video, Instagram, Online Display
+- **Conversions:** 17,639
+- **Ad spend:** not in the file. The 50,000 EUR budget is a simulated scenario, labeled as such everywhere.
+- **Licence of the source data:** MIT (licence of the upstream repository)
 - The raw file is not versioned. See `data/sources.md` for the download steps.
 
 ## Results
