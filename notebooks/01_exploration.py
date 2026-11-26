@@ -75,6 +75,33 @@ def _(df, mo, pd):
     parcours.to_csv(chemin, index=False)
     print(parcours.shape, "lignes exportées")
 
+    # Synthèse des constats de l'exploration
+    mo.md(
+        """
+        ## Constats de l'exploration
+
+        **Données** : 586 737 interactions, 240 108 cookies, juillet 2018 (31 jours).
+        Aucune valeur manquante. 5 canaux : Facebook, Paid Search, Online Video,
+        Instagram, Online Display.
+
+        **Doublons** : 4 145 lignes en double, toutes des impressions, aucune conversion.
+        Conservées : impossible de trancher entre double affichage réel et doublon de
+        journal. Effet à tester lors de la comparaison des modèles.
+
+        **Parcours** : 240 108 parcours pour 240 108 cookies, donc un seul parcours par
+        cookie : aucune interaction ne suit une conversion. 17 639 parcours convertis,
+        chiffre conforme au total des conversions du fichier.
+
+        **Ligne de conversion** : elle porte son propre canal et ne double pas le contact
+        précédent. 42 % des parcours convertis tiennent en un seul contact. Les quatre
+        modèles donneront donc le même crédit dans ces cas, et les écarts se joueront sur
+        les 58 % restants.
+
+        **Valeur** : 110 231 au total sur les parcours convertis. La source ne précise pas
+        la devise, point à signaler au moment du calcul des ROAS.
+        """
+    )
+
 
 @app.cell
 def _():
