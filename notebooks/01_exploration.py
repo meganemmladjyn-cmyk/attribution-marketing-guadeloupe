@@ -5,6 +5,21 @@ app = marimo.App(width="medium")
 
 
 @app.cell
+def _(mo, parcours):
+    # Contrôle du chargement des modèles
+    import sys
+    sys.path.insert(0, str(mo.notebook_dir() / ".."))
+
+    from src.attribution.first_click import compute_first_click
+    from src.attribution.last_click import compute_last_click
+
+    compute_first_click(parcours)
+
+    # Crédit par canal selon le modèle last-click
+    compute_last_click(parcours)
+
+
+@app.cell
 def _(df, mo, pd):
     ## Conversion de time en date, puis tri par cookie et par date
     df_trie = df.copy()
@@ -73,7 +88,7 @@ def _(df, mo, pd):
     # Export de la table des parcours
     chemin = mo.notebook_dir() / ".." / "data" / "processed" / "journeys.csv"
     parcours.to_csv(chemin, index=False)
-    print(parcours.shape, "lignes exportées")
+    #print(parcours.shape, "lignes exportées")
 
     # Synthèse des constats de l'exploration
     mo.md(
@@ -101,6 +116,7 @@ def _(df, mo, pd):
         la devise, point à signaler au moment du calcul des ROAS.
         """
     )
+    return (parcours,)
 
 
 @app.cell
